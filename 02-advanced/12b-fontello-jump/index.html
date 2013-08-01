@@ -52,16 +52,62 @@
 	}
 
 	p {
-		font: normal normal normal 24px/24px 'Helvetic Neue', Helvetica, Arial, sans-serif;
+		font: normal normal normal 24px/50px 'Helvetic Neue', Helvetica, Arial, sans-serif;
 	}
 
 	.icon-ie {
-		position: relative;
-		padding: 5px;
-		color: #c00;
+		float: left;
+		width: 50px;
+		height: 50px;
+		margin-right: 12px;
+		color: #333;
 		background-color: #ccc;
+		font: normal normal normal 36px/50px 'Helvetic Neue', Helvetica, Arial, sans-serif;
+		text-align: center;
 
 		-webkit-border-radius: 7px;
+		-moz-border-radius: 7px;
+		-ms-border-radius: 7px;
+		-o-border-radius: 7px;
+		border-radius: 7px;
+
+		-webkit-animation: bouncy 2s infinite normal;
+		-moz-animation: bouncy 2s infinite normal;
+		-o-animation: bouncy 2s infinite normal;
+		animation: bouncy 2s infinite normal;
+	}
+
+	@-webkit-keyframes bouncy {
+		0% { margin-top: 0px; }
+		60% { margin-top: 0px; }
+		70% { margin-top: -20px; }
+		80% { margin-top: 0px; }
+		90% { margin-top: -8px; }
+		100% { margin-top: 0px; }
+	}
+	@-moz-keyframes bouncy {
+		0% { margin-top: 0px; }
+		60% { margin-top: 0px; }
+		70% { margin-top: -20px; }
+		80% { margin-top: 0px; }
+		90% { margin-top: -8px; }
+		100% { margin-top: 0px; }
+	}
+	@-o-keyframes bouncy {
+		0% { margin-top: 0px; }
+		60% { margin-top: 0px; }
+		70% { margin-top: -20px; }
+		80% { margin-top: 0px; }
+		90% { margin-top: -8px; }
+		100% { margin-top: 0px; }
+	}
+	@keyframes bouncy {
+		0% { margin-top: 0px; }
+		60% { margin-top: 0px; }
+		70% { margin-top: -20px; }
+		80% { margin-top: 0px; }
+		90% { margin-top: -8px; }
+		100% { margin-top: 0px; }
 	}
 	</style>
 
@@ -72,7 +118,7 @@
 <div id="wrapper">
 	<div id="content">
 		<h1>Fontello / icoMoon Animation</h1>
-		<p><span class="icon-ie"></span> You need to update your browser!</p>
+		<p><span class="icon-ie"></span> Detected IE8, please update your browser!</p>
 	</div>
 </div>
 
