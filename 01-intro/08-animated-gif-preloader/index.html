@@ -17,13 +17,29 @@
 	<!-- Demo CSS -->
 	<style>
 	#box {
-		width: 100px;
-		height: 100px;
+		position: relative;
+		width: 240px;
+		height: 146px;
 		background-color: #666;
-		font: normal normal bold 36px/100px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-		text-align: center;
-		color: #fff;
-		cursor: pointer;
+		overflow: hidden;
+	}
+
+	#preloader {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 66px;
+		height: 66px;
+		margin: -33px 0 0 -33px;
+	}
+
+	#gif {
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		width: 100%;
+		height: 100%;
+		display: none;
 	}
 	</style>
 
@@ -33,8 +49,11 @@
 
 <div id="wrapper">
 	<div id="content">
-		<h1></h1>
-		<div id="box">1</div>
+		<h1>Animated GIF Preloader</h1>
+		<div id="box">
+			<img id="preloader" src="../../assets/img/ajax-loader.gif" alt="" />
+			<img id="gif" src="http://d22zlbw5ff7yk5.cloudfront.net/images/cm-49366-0511593c948fae.gif" alt="" />
+		</div>
 	</div>
 </div>
 
@@ -45,7 +64,9 @@
 <!-- Demo JS -->
 <script>
 $(function() {
-
+	$(window).on('load', function() {
+		$('#gif').delay(666).fadeIn(666);
+	});
 });
 </script>
 
