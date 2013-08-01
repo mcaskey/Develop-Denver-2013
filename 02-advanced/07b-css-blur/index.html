@@ -11,32 +11,45 @@
 	<meta name="description" content="Develop Denver 2013: Advanced HTML5 Animation" />
 	<meta name="viewport" content="width=device-width" />
 
-	<link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" href="../assets/css/main.css">
+	<link rel="shortcut icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="../../assets/css/main.css">
 
 	<!-- Demo CSS -->
 	<style>
+	img {
+		display: block;
+		cursor: pointer;
 
+		-webkit-transition: -webkit-filter 666ms ease-out;
+	}
+
+	img.blur {
+		-webkit-filter: blur(3px);
+	}
 	</style>
 
-	<script src="../assets/js/vendor/modernizr-2.6.2.min.js"></script>
+	<script src="../../assets/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
 
-<div class="wrapper">
-	<div class="content">
-		<p>Hello world! This is HTML5 Boilerplate.</p>
-		<a href="http://developdenver.org/">Test link</a>
+<div id="wrapper">
+	<div id="content">
+		<h1>CSS Blur Filter With Transition</h1>
+		<img id="tender-embrace" src="../../assets/img/07a-js-blur.jpg" width="666" height="444" />
 	</div>
 </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
 
 <!-- Demo JS -->
 <script>
 $(function() {
+	var $img = $('#tender-embrace');
 
+	$img.on('click', function(e) {
+		$img.toggleClass('blur');
+	});
 });
 </script>
 

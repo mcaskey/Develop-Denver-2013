@@ -11,32 +11,60 @@
 	<meta name="description" content="Develop Denver 2013: Advanced HTML5 Animation" />
 	<meta name="viewport" content="width=device-width" />
 
-	<link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" href="../assets/css/main.css">
+	<link rel="shortcut icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="../../assets/css/main.css">
 
 	<!-- Demo CSS -->
 	<style>
-
+	#box {
+		width: 100px;
+		height: 100px;
+		background-color: #666;
+		font: normal normal bold 36px/100px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		text-align: center;
+		color: #fff;
+		cursor: pointer;
+	}
 	</style>
 
-	<script src="../assets/js/vendor/modernizr-2.6.2.min.js"></script>
+	<script src="../../assets/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
 
-<div class="wrapper">
-	<div class="content">
-		<p>Hello world! This is HTML5 Boilerplate.</p>
-		<a href="http://developdenver.org/">Test link</a>
+<div id="wrapper">
+	<div id="content">
+		<h1>jQuery Text Counter</h1>
+		<div id="box">1</div>
 	</div>
 </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
 
 <!-- Demo JS -->
 <script>
 $(function() {
+	var $b = $('#box');
 
+	$b.on('click', function(e) {
+		var inv = $b.text() === '25' ? true : false;
+
+		$({
+			'i_do_what_i_want': 0
+		}).animate({
+			'i_do_what_i_want': 1
+		}, {
+			'duration': 3000,
+			'easing': 'swing',
+			'step': function(now, fx) {
+				var p = inv ? 1 - now : now;
+				$b.text((1 + Math.floor(p * 24)).toString());
+			},
+			'complete': function(e) {
+				console.log('Done!');
+			}
+		});
+	});
 });
 </script>
 

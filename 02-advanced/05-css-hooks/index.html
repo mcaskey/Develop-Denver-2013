@@ -11,27 +11,42 @@
 	<meta name="description" content="Develop Denver 2013: Advanced HTML5 Animation" />
 	<meta name="viewport" content="width=device-width" />
 
-	<link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" href="../assets/css/main.css">
+	<link rel="shortcut icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="../../assets/css/main.css">
 
 	<!-- Demo CSS -->
 	<style>
+	.box {
+		width: 100px;
+		height: 100px;
+		margin-bottom: 20px;
+		background-color: #666;
+		font: normal normal bold 36px/100px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		text-align: center;
+		color: #fff;
+		cursor: pointer;
+	}
 
+	#box-2 {
+		margin-bottom: 0px;
+	}
 	</style>
 
-	<script src="../assets/js/vendor/modernizr-2.6.2.min.js"></script>
+	<script src="../../assets/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
 
-<div class="wrapper">
-	<div class="content">
-		<p>Hello world! This is HTML5 Boilerplate.</p>
-		<a href="http://developdenver.org/">Test link</a>
+<div id="wrapper">
+	<div id="content">
+		<h1>jQuery CSS Hooks</h1>
+		<div id="box-1" class="box">1</div>
+		<div id="box-2" class="box">2</div>
 	</div>
 </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+<script src="../../assets/js/vendor/jquery.easing.1.3.js"></script>
 
 <!-- Demo JS -->
 <script>
@@ -47,19 +62,72 @@
 	// cssHooks at this time and will blow away your functions
 	// if they exist.
 	$(function () {
-		$.cssHooks["someCSSProp"] = {
-			get: function( elem, computed, extra ) {
-			// handle getting the CSS property
+		$.cssHooks["someCustomProp"] = {
+			get: function(elem, computed, extra) {
+				return $(elem).data('someCustomProp');
 			},
-			set: function( elem, value ) {
-			// handle setting the CSS value
+			set: function(elem, value) {
+				$(elem).data('someCustomProp', value);
 			}
 		};
 	});
+
+	// It's special! (Remove px by default)
+	$.cssNumber["someCustomProp"] = true;
+
+	// Let 'er animate
+	$.fx.step["someCustomProp"] = function(fx){
+		$.cssHooks["someCustomProp"].set(fx.elem, fx.now + fx.unit);
+	};
 })(jQuery);
 
 $(function() {
+	var $b1 = $('#box-1'),
+		$b2 = $('#box-2');
 
+	// Set it initially
+	$b1.css('some-custom-prop', 0);
+	$b2.css('some-custom-prop', 0);
+
+	$b1.on('click', function(e) {
+		var scp = $b1.css('some-custom-prop') === '333' ? '0' : '333';
+
+		$b1
+			.stop(true, false)
+			.animate({
+				'some-custom-prop': scp
+			}, {
+				'duration': 666,
+				'easing': 'easeInOutExpo',
+				'step': function(now, fx) {
+					$b1.css('margin-left', now + 'px');
+					console.log($b1.css('some-custom-prop'));
+				},
+				'complete': function(e) {
+					console.log('Box 1 Done: ' + $b1.css('some-custom-prop') + '!');
+				}
+			});
+	});
+
+	$b2.on('click', function(e) {
+		var scp = $b2.css('some-custom-prop') === '566' ? '0' : '566';
+
+		$b2
+			.stop(true, false)
+			.animate({
+				'some-custom-prop': scp
+			}, {
+				'duration': 666,
+				'easing': 'easeInOutExpo',
+				'step': function(now, fx) {
+					$b2.css('margin-left', now + 'px');
+					console.log($b2.css('some-custom-prop'));
+				},
+				'complete': function(e) {
+					console.log('Box 2 Done: ' + $b2.css('some-custom-prop') + '!');
+				}
+			});
+	});
 });
 </script>
 

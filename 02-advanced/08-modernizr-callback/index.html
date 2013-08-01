@@ -11,32 +11,71 @@
 	<meta name="description" content="Develop Denver 2013: Advanced HTML5 Animation" />
 	<meta name="viewport" content="width=device-width" />
 
-	<link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" href="../assets/css/main.css">
+	<link rel="shortcut icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="../../assets/css/main.css">
 
 	<!-- Demo CSS -->
 	<style>
+	#box {
+		width: 100px;
+		height: 100px;
+		background-color: #666;
+		font: normal normal bold 36px/100px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		text-align: center;
+		color: #fff;
+		cursor: pointer;
 
+		-webkit-transition: all 666ms ease-out;
+		-moz-transition: all 666ms ease-out;
+		-ms-transition: all 666ms ease-out;
+		-o-transition: all 666ms ease-out;
+		transition: all 666ms ease-out;
+	}
+
+	#box.slide {
+		-webkit-transform: translate(566px, 0);
+		-moz-transform: translate(566px, 0);
+		-ms-transform: translate(566px, 0);
+		-o-transform: translate(566px, 0);
+		transform: translate(566px, 0);
+	}
 	</style>
 
-	<script src="../assets/js/vendor/modernizr-2.6.2.min.js"></script>
+	<script src="../../assets/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
 
-<div class="wrapper">
-	<div class="content">
-		<p>Hello world! This is HTML5 Boilerplate.</p>
-		<a href="http://developdenver.org/">Test link</a>
+<div id="wrapper">
+	<div id="content">
+		<h1>Modernizr Callback</h1>
+		<div id="box">1</div>
 	</div>
 </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
 
 <!-- Demo JS -->
 <script>
-$(function() {
+var transEndEventNames = {
+	'WebkitTransition' : 'webkitTransitionEnd',
+	'MozTransition'    : 'transitionend',
+	'OTransition'      : 'oTransitionEnd',
+	'msTransition'     : 'MSTransitionEnd',
+	'transition'       : 'transitionend'
+},
+transEndEventName = transEndEventNames[Modernizr.prefixed('transition')];
 
+$(function() {
+	var $b = $('#box');
+
+	$b.on('click', function(e) {
+		$b.toggleClass('slide');
+	});
+
+	$b.on(transEndEventName, function(e) {
+		console.log('Done!');
+	});
 });
 </script>
 
