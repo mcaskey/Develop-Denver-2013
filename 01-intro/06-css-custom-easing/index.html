@@ -24,6 +24,15 @@
 		text-align: center;
 		color: #fff;
 		cursor: pointer;
+
+		-webkit-transition: margin-left 666ms cubic-bezier(1.000, 0.000, 0.000, 1.000);
+		-moz-transition: margin-left 666ms cubic-bezier(1.000, 0.000, 0.000, 1.000);
+		-o-transition: margin-left 666ms cubic-bezier(1.000, 0.000, 0.000, 1.000);
+		transition: margin-left 666mscubic-bezier(1.000, 0.000, 0.000, 1.000);
+	}
+
+	#box.slide {
+		margin-left: 566px;
 	}
 	</style>
 
@@ -33,19 +42,23 @@
 
 <div id="wrapper">
 	<div id="content">
-		<h1></h1>
+		<h1>Custom CSS Easing</h1>
+		<p><a href="http://matthewlein.com/ceaser/" target="_new">http://matthewlein.com/ceaser/</a></p>
 		<div id="box">1</div>
 	</div>
 </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
-<script src="../../assets/js/vendor/jquery.easing.1.3.js"></script>
 
 <!-- Demo JS -->
 <script>
 $(function() {
+	var $b = $('#box');
 
+	$b.on('click', function(e) {
+		$b.toggleClass('slide');
+	});
 });
 </script>
 
