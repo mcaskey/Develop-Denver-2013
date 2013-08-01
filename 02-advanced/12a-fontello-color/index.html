@@ -11,34 +11,57 @@
 	<meta name="description" content="Develop Denver 2013: Advanced HTML5 Animation" />
 	<meta name="viewport" content="width=device-width" />
 
-	<link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" href="../assets/css/main.css">
+	<link rel="shortcut icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="../../assets/css/main.css">
 
 	<!-- Demo CSS -->
 	<style>
+	@font-face {
+		font-family: 'fontello';
+		src: url('../../assets/fonts/fontello.eot?97464276');
+		src: url('../../assets/fonts/fontello.eot?97464276#iefix') format('embedded-opentype'),
+			url('../../assets/fonts/fontello.woff?97464276') format('woff'),
+			url('../../assets/fonts/fontello.ttf?97464276') format('truetype'),
+			url('../../assets/fonts/fontello.svg?97464276#fontello') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
 
+	[class^="icon-"]:before, [class*=" icon-"]:before {
+		font-family: "fontello";
+		font-style: normal;
+		font-weight: normal;
+		speak: none;
+
+		display: inline-block;
+		text-decoration: inherit;
+		width: 1em;
+		margin-right: .2em;
+		text-align: center;
+		font-variant: normal;
+		text-transform: none;
+		line-height: 1em;
+		margin-left: .2em;
+	}
+
+	.icon-heart:before { content: '\e801'; } /* '' */
+	.icon-ie:before { content: '\e800'; } /* '' */
+
+	a:hover {
+		color: #eb3586;
+	}
 	</style>
 
-	<script src="../assets/js/vendor/modernizr-2.6.2.min.js"></script>
+	<script src="../../assets/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
 
-<div class="wrapper">
-	<div class="content">
-		<p>Hello world! This is HTML5 Boilerplate.</p>
-		<a href="http://developdenver.org/">Test link</a>
+<div id="wrapper">
+	<div id="content">
+		<h1>Fontello / icoMoon Rollover</h1>
+		<p><a href="http://developdenver.org" target="_new"><span class="icon-heart"></span> Develop Denver</a></p>
 	</div>
 </div>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
-
-<!-- Demo JS -->
-<script>
-$(function() {
-
-});
-</script>
 
 </body>
 </html>

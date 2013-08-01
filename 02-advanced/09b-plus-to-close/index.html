@@ -11,32 +11,126 @@
 	<meta name="description" content="Develop Denver 2013: Advanced HTML5 Animation" />
 	<meta name="viewport" content="width=device-width" />
 
-	<link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" href="../assets/css/main.css">
+	<link rel="shortcut icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="../../assets/css/main.css">
 
 	<!-- Demo CSS -->
 	<style>
+	ul {
+		width: 300px;
+		padding: 5px;
+		margin: 0;
+		list-style: none;
+		background-color: #333;
+	}
 
+	ul li {
+		height: 32px;
+		font: normal normal normal 16px/32px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		color: #fff;
+		margin-bottom: 5px;
+		background-color: #666;
+
+		-webkit-transition: all 250ms ease-out;
+		-moz-transition: all 250ms ease-out;
+		-ms-transition: all 250ms ease-out;
+		-o-transition: all 250ms ease-out;
+		transition: all 250ms ease-out;
+	}
+
+	ul li:last-child {
+		margin-bottom: 0px;
+	}
+
+	ul li a {
+		position: relative;
+		display: block;
+		height: 100%;
+		padding-left: 32px;
+	}
+
+	ul li a .plus {
+		position: absolute;
+		top: 5px;
+		left: 5px;
+		width: 22px;
+		height: 22px;
+		background-color: #333;
+
+		-webkit-border-radius: 11px;
+		-moz-border-radius: 11px;
+		-ms-border-radius: 11px;
+		-o-border-radius: 11px;
+		border-radius: 11px;
+
+		-webkit-transition: all 250ms ease-out;
+		-moz-transition: all 250ms ease-out;
+		-ms-transition: all 250ms ease-out;
+		-o-transition: all 250ms ease-out;
+		transition: all 250ms ease-out;
+	}
+
+	ul li a .plus:before,
+	ul li a .plus:after {
+		content: "";
+		position: absolute;
+		top: 6px;
+		left: 10px;
+		width: 2px;
+		height: 10px;
+		background-color: #5ba7ab;
+	}
+
+	ul li a .plus:after {
+		-webkit-transform: rotate(90deg);
+		-moz-transform: rotate(90deg);
+		-ms-transform: rotate(90deg);
+		-o-transform: rotate(90deg);
+		transform: rotate(90deg);
+	}
+
+	ul li.open {
+		height: 160px;
+	}
+
+	ul li.open a .plus {
+		-webkit-transform: rotate(45deg);
+		-moz-transform: rotate(45deg);
+		-ms-transform: rotate(45deg);
+		-o-transform: rotate(45deg);
+		transform: rotate(45deg);
+	}
 	</style>
 
-	<script src="../assets/js/vendor/modernizr-2.6.2.min.js"></script>
+	<script src="../../assets/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
 
-<div class="wrapper">
-	<div class="content">
-		<p>Hello world! This is HTML5 Boilerplate.</p>
-		<a href="http://developdenver.org/">Test link</a>
+<div id="wrapper">
+	<div id="content">
+		<h1>CSS Open / Close</h1>
+		<ul>
+			<li><a href="javascript:void(0);"><span class="plus"></span><span class="label">Open item 1</span></a></li>
+			<li><a href="javascript:void(0);"><span class="plus"></span><span class="label">Open item 2</span></a></li>
+			<li><a href="javascript:void(0);"><span class="plus"></span><span class="label">Open item 3</span></a></li>
+			<li><a href="javascript:void(0);"><span class="plus"></span><span class="label">Open item 4</span></a></li>
+			<li><a href="javascript:void(0);"><span class="plus"></span><span class="label">Open item 5</span></a></li>
+			<li><a href="javascript:void(0);"><span class="plus"></span><span class="label">Open item 6</span></a></li>
+		</ul>
 	</div>
 </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
 
 <!-- Demo JS -->
 <script>
 $(function() {
+	var $li = $('li');
 
+	$li.on('click', function(e) {
+		$(this).toggleClass('open');
+	});
 });
 </script>
 

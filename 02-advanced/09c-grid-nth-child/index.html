@@ -11,32 +11,118 @@
 	<meta name="description" content="Develop Denver 2013: Advanced HTML5 Animation" />
 	<meta name="viewport" content="width=device-width" />
 
-	<link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" href="../assets/css/main.css">
+	<link rel="shortcut icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="../../assets/css/main.css">
 
 	<!-- Demo CSS -->
 	<style>
+	#box-wrapper {
+		position: relative;
+		width: 340px;
+		height: 340px;
+		background-color: #333;
+	}
 
+	.box {
+		position: absolute;
+		width: 100px;
+		height: 100px;
+		margin-bottom: 20px;
+		background-color: #666;
+		font: normal normal bold 36px/100px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		text-align: center;
+		color: #fff;
+		cursor: pointer;
+
+		-webkit-transition: all 400ms ease-out;
+		-moz-transition: all 400ms ease-out;
+		-ms-transition: all 400ms ease-out;
+		-o-transition: all 400ms ease-out;
+		transition: all 400ms ease-out;
+	}
+
+	#box-wrapper div:nth-child(-n+3) {
+		top: 10px;
+	}
+
+	#box-wrapper div:nth-child(n+4):nth-child(-n+6) {
+		top: 120px;
+	}
+
+	#box-wrapper div:nth-child(n+7) {
+		top: 230px;
+	}
+
+	#box-wrapper div:nth-child(3n+1) {
+		left: 10px;
+	}
+
+	#box-wrapper div:nth-child(3n+2) {
+		left: 120px;
+	}
+
+	#box-wrapper div:nth-child(3n+3) {
+		left: 230px;
+	}
+
+	/* scatter */
+	#box-wrapper.scatter div:nth-child(-n+3) {
+		margin-top: -150px;
+		opacity: 0;
+	}
+
+	#box-wrapper.scatter div:nth-child(n+7) {
+		margin-top: 150px;
+		opacity: 0;
+	}
+
+	#box-wrapper.scatter div:nth-child(5) {
+		opacity: 0;
+	}
+
+	#box-wrapper.scatter div:nth-child(3n+1) {
+		margin-left: -150px;
+		opacity: 0;
+	}
+
+	#box-wrapper.scatter div:nth-child(3n+3) {
+		margin-left: 150px;
+		opacity: 0;
+	}
 	</style>
 
-	<script src="../assets/js/vendor/modernizr-2.6.2.min.js"></script>
+	<script src="../../assets/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
 
-<div class="wrapper">
-	<div class="content">
-		<p>Hello world! This is HTML5 Boilerplate.</p>
-		<a href="http://developdenver.org/">Test link</a>
+<div id="wrapper">
+	<div id="content">
+		<h1>CSS Scatter</h1>
+		<div id="box-wrapper">
+			<div class="box">1</div>
+			<div class="box">2</div>
+			<div class="box">3</div>
+			<div class="box">4</div>
+			<div class="box">5</div>
+			<div class="box">6</div>
+			<div class="box">7</div>
+			<div class="box">8</div>
+			<div class="box">9</div>
+		</div>
 	</div>
 </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
 
 <!-- Demo JS -->
 <script>
 $(function() {
+	var $bw = $('#box-wrapper');
 
+	$bw.on('click', function(e) {
+		$bw.toggleClass('scatter');
+	});
 });
 </script>
 
