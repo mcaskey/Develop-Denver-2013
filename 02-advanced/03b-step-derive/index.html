@@ -33,7 +33,7 @@
 
 <div id="wrapper">
 	<div id="content">
-		<h1>jQuery Custom Step Animation</h1>
+		<h1>jQuery Step Animate / Derive</h1>
 		<div id="box">1</div>
 	</div>
 </div>
@@ -48,23 +48,25 @@ $(function() {
 	var $b = $('#box');
 
 	$b.on('click', function(e) {
-		var inv = $b.css('margin-left') === '566px' ? true : false;
+		var m = $b.css('margin-left') === '566px' ? '0px' : '566px';
 
-		$({
-			'i_do_what_i_want': 0
-		}).animate({
-			'i_do_what_i_want': 1
-		}, {
-			'duration': 666,
-			'easing': 'easeInOutExpo',
-			'step': function(now, fx) {
-				var p = inv ? 1 - now : now;
-				$b.css('margin-left', (p * 566) + 'px');
-			},
-			'complete': function(e) {
-				console.log('Done!');
-			}
-		});
+		$b
+			.stop(true, false)
+			.animate({
+				'margin-left': m
+			}, {
+				'duration': 3000,
+				'easing': 'easeInOutExpo',
+				'step': function(now, fx) {
+					var p = Math.abs(now / (fx.end - fx.start)),
+						mt = Math.max(0, (200 * (p - 0.5)));
+
+					$b.css('margin-top', mt + 'px');
+				},
+				'complete': function(e) {
+					console.log('Done!');
+				}
+			});
 	});
 });
 </script>
