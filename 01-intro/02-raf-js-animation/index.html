@@ -11,33 +11,69 @@
 	<meta name="description" content="Develop Denver 2013: Intro to HTML5 Animation" />
 	<meta name="viewport" content="width=device-width" />
 
-	<link rel="shortcut icon" href="../assets/img/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" href="../assets/css/main.css">
+	<link rel="shortcut icon" href="../../assets/img/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="../../assets/css/main.css">
 
 	<!-- Demo CSS -->
 	<style>
-
+	#box {
+		width: 100px;
+		height: 100px;
+		background-color: #666;
+		font: normal normal bold 36px/100px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+		text-align: center;
+		color: #fff;
+		cursor: pointer;
+	}
 	</style>
 
-	<script src="../assets/js/vendor/modernizr-2.6.2.min.js"></script>
+	<script src="../../assets/js/vendor/modernizr-2.6.2.min.js"></script>
 </head>
 <body>
 
-<div class="wrapper">
-	<div class="content">
-		<p>Hello world! This is HTML5 Boilerplate.</p>
-		<a href="http://developdenver.org/">Test link</a>
+<div id="wrapper">
+	<div id="content">
+		<h1>Basic JavaScript Animation</h1>
+		<div id="box" class="box">1</div>
 	</div>
 </div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="../assets/js/vendor/jquery-1.10.1.min.js"><\/script>')</script>
-
 <!-- Demo JS -->
+<script src="../../assets/js/vendor/raf.js"></script>
 <script>
-$(function() {
+var $b = document.getElementById('box');
 
-});
+$b.addEventListener('click', function() {
+	var x = 0,
+		fps = 60,
+		step = 4,
+		time;
+
+	$b.style.marginLeft = '0';
+
+	function animate() {
+		requestAnimFrame(animate);
+		draw();
+	};
+
+	function draw() {
+		requestAnimationFrame(draw);
+
+		var now = new Date().getTime(),
+			dt = now - (time || now);
+
+		time = now;
+		x += step / (1000/fps) * dt;
+		$b.style.marginLeft = x + 'px';
+
+		if(x > 566) {
+			$b.style.marginLeft = '566px';
+			cancelAnimationFrame(animate);
+		}
+	};
+
+	draw();
+}, false);
 </script>
 
 </body>
